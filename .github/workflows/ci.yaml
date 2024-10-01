@@ -18,12 +18,12 @@ jobs:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
-      - uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v4
         with:
-          node-version: 18
+          version: 9
 
       - name: Build
-        run: npm install && npm run build
+        run: pnpm install && pnpm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4

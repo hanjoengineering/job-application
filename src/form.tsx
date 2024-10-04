@@ -1,5 +1,6 @@
 "use client";
 import backgroundImage from "./assets/bg.jpg?url";
+import { toast } from 'sonner';
 
 import emailjs from "@emailjs/browser";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -140,14 +141,23 @@ export const AccountForm: FunctionComponent<{
 
 	const wait = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
-	const onSubmit = async (v: AccountFormValues) => {
-		await emailjs.send(
+	const sendEmail = (v: AccountFormValues) =>
+		emailjs.send(
 			import.meta.env.VITE_SERVICE_ID,
 			import.meta.env.VITE_TEMPLATE_ID,
 			{ message: JSON.stringify(v) },
 		);
-		await wait(3000);
-		submissionCb(v);
+
+	const onSubmit = async (v: AccountFormValues) => {
+		try {
+			await sendEmail(v)
+			await wait(3000);
+			submissionCb(v);
+		}
+		catch (err) {
+			console.warn(err)
+			toast.warning('Sorry an error occurred');
+		}
 	};
 
 	const isSubmitting = form.formState.isSubmitting;

@@ -571,7 +571,7 @@ export default function FormPage() {
 									<h1 className="text-bold text-6xl text-center font-FrancoisOne">
 										THANK YOU
 									</h1>
-									<p className="text-2xl text-center">
+									<p className="text-xl text-center">
 										We will reach out to you soon. We typically respond within
 										1-2 working days.
 									</p>

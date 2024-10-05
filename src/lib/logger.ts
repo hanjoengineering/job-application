@@ -21,11 +21,14 @@ export interface Database {
     }
   }
 
+const databaseUrl = import.meta.env.DATABASE_URL
+const anonKey = import.meta.env.DATABASE_KEY
+
+console.log({ databaseUrl, anonKey})
 const supabase = createClient<Database>(
-    import.meta.env.DATABASE_URL,
-    import.meta.env.DATABASE_KEY
+    databaseUrl,
+    anonKey
   )
-  // added a comment
 
 const logger = new Logger()
 logger.attachTransport(async (logObj) => {

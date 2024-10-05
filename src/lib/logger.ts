@@ -21,8 +21,8 @@ export interface Database {
     }
   }
 
-const databaseUrl = import.meta.env.DATABASE_URL
-const anonKey = import.meta.env.DATABASE_KEY
+const databaseUrl = import.meta.env.VITE_DATABASE_URL
+const anonKey = import.meta.env.VITE_DATABASE_KEY
 
 console.log({ databaseUrl, anonKey})
 const supabase = createClient<Database>(

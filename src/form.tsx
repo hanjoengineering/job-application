@@ -157,7 +157,7 @@ export const AccountForm: FunctionComponent<{
 	const onSubmit = async (v: AccountFormValues) => {
 		try {
 			await storeInfo(v)
-			await wait(3000);
+			// await wait(3000);
 			submissionCb(v);
 		}
 		catch (err) {

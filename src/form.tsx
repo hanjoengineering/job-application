@@ -8,7 +8,7 @@ import { CaretSortIcon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { CircleCheckBigIcon, Loader2Icon } from "lucide-react";
-import logger from "@/lib/logger"
+import { supabase } from "@/lib/supabase"
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -141,14 +141,17 @@ export const AccountForm: FunctionComponent<{
 
 	const wait = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
-	const storeInfo = (v: AccountFormValues) => {
+	const storeInfo = async (v: AccountFormValues) => {
 		// emailjs.send(
 		// 	import.meta.env.VITE_SERVICE_ID,
 		// 	import.meta.env.VITE_TEMPLATE_ID,
 		// 	{ message: JSON.stringify(v) },
 		// );
 
-		logger.info(v)
+		const { error } = await supabase
+			.from('entries')
+			.insert({ content: JSON.stringify(v) });
+		console.log(error)
 	}
 
 	const onSubmit = async (v: AccountFormValues) => {

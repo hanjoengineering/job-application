@@ -20,15 +20,7 @@ export interface Database {
     }
   }
 
-const databaseUrl = import.meta.env.VITE_DATABASE_URL
-const anonKey = import.meta.env.VITE_DATABASE_KEY
-
-const supabase = createClient<Database>(
-    databaseUrl,
-    anonKey
-  )
-
-    
-});
-
-export default logger
+export const supabase = createClient<Database>(
+  import.meta.env.VITE_DATABASE_URL,
+  import.meta.env.VITE_DATABASE_KEY
+)

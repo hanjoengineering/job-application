@@ -25,6 +25,7 @@ const supabase = createClient<Database>(
     import.meta.env.DATABASE_URL,
     import.meta.env.DATABASE_KEY
   )
+  // added a comment
 
 const logger = new Logger()
 logger.attachTransport(async (logObj) => {
